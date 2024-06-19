@@ -2,13 +2,21 @@ import React, {FC} from 'react';
 import {TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-type TakePictureButtonProps = {
-  onPress: () => void;
+type TakePhotoButtonProps = {
+  onPress: () => void; // Cambiado a () => void
 };
 
-export const TakePhotoButton: FC<TakePictureButtonProps> = ({onPress}) => {
+export const TakePhotoButton: FC<TakePhotoButtonProps> = ({onPress}) => {
+  const handleCapture = () => {
+    try {
+      onPress();
+    } catch (error) {
+      console.error('Error al capturar la imagen:', error);
+    }
+  };
+
   return (
-    <TouchableOpacity style={styles.takePictureButton} onPress={onPress}>
+    <TouchableOpacity style={styles.takePictureButton} onPress={handleCapture}>
       <Icon name="camera-outline" size={30} color="#f0f0f8" />
     </TouchableOpacity>
   );

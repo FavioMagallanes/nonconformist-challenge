@@ -3,29 +3,20 @@ import {View, StyleSheet} from 'react-native';
 import {PhotoList} from '../photos/components/photo-list';
 import {TakePhotoButton} from '../photos/components/take-photo-button';
 import {globalStyles} from '../styles/global-styles';
-import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {RootStackParamList} from '../navigation/types';
+import {useNavigation} from '@react-navigation/native';
+import {usePhotoContext} from '../context/photo-context';
 
 export const HomeScreen: React.FC = () => {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-  const imageUrls = [
-    'https://via.placeholder.com/150',
-    'https://via.placeholder.com/150',
-    'https://via.placeholder.com/150',
-    'https://via.placeholder.com/150',
-    'https://via.placeholder.com/150',
-    'https://via.placeholder.com/150',
-    'https://via.placeholder.com/150',
-    'https://via.placeholder.com/150',
-  ];
+  const navigation = useNavigation();
+  const {photos} = usePhotoContext();
 
   const handleTakePhoto = () => {
-    navigation.navigate('TakePhoto');
+    navigation.navigate('TakePhoto' as never);
   };
 
   return (
     <View style={globalStyles.container}>
-      <PhotoList imageUrls={imageUrls} />
+      <PhotoList photos={photos} />
       <View style={styles.buttonContainer}>
         <TakePhotoButton onPress={handleTakePhoto} />
       </View>

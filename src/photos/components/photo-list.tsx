@@ -1,15 +1,16 @@
 import React, {FC} from 'react';
 import {Image, ScrollView, StyleSheet} from 'react-native';
+import {Photo} from '../../context/photo-context';
 
 type PhotoListProps = {
-  imageUrls: string[];
+  photos: Photo[];
 };
 
-export const PhotoList: FC<PhotoListProps> = ({imageUrls}) => {
+export const PhotoList: FC<PhotoListProps> = ({photos}) => {
   return (
     <ScrollView contentContainerStyle={styles.gridContainer}>
-      {imageUrls.map((url, index) => (
-        <Image key={index} source={{uri: url}} style={styles.gridItem} />
+      {photos.map((photo, index) => (
+        <Image key={index} source={{uri: photo.uri}} style={styles.gridItem} />
       ))}
     </ScrollView>
   );
@@ -28,3 +29,5 @@ const styles = StyleSheet.create({
     margin: 5,
   },
 });
+
+export default PhotoList;
