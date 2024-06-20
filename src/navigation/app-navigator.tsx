@@ -1,10 +1,11 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {HomeScreen} from '../screens/home-screen';
-import {PhotoScreen} from '../screens/photo-screen';
 import {TakePhotoScreen} from '../screens/take-photo-screen';
+import {PhotoModal} from '../photos/components/photo-modal';
+import {RootStackParamList} from './types';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
 const AppNavigator = () => {
   return (
@@ -15,9 +16,12 @@ const AppNavigator = () => {
         options={{title: 'Home'}}
       />
       <Stack.Screen
-        name="Photo"
-        component={PhotoScreen}
-        options={{title: 'Photo'}}
+        name="PhotoScreen"
+        component={PhotoModal}
+        options={{
+          headerShown: false,
+          presentation: 'modal',
+        }}
       />
       <Stack.Screen
         name="TakePhoto"

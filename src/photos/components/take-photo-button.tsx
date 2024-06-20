@@ -3,7 +3,7 @@ import {TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 type TakePhotoButtonProps = {
-  onPress: () => void; // Cambiado a () => void
+  onPress: () => void;
 };
 
 export const TakePhotoButton: FC<TakePhotoButtonProps> = ({onPress}) => {
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   takePictureButton: {
     alignSelf: 'center',
     borderRadius: 50,
-    backgroundColor: '#c2c1e1',
+    backgroundColor: '#9592e2',
     marginBottom: 20,
     paddingVertical: 20,
     paddingHorizontal: 20,

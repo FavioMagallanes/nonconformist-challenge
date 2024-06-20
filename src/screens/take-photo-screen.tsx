@@ -34,6 +34,12 @@ const styles = StyleSheet.create({
   camera: {
     flex: 1,
   },
+  textError: {
+    color: 'red',
+    fontSize: 20,
+    textAlign: 'center',
+    marginTop: 20,
+  },
 });
 
 export default TakePhotoScreen;

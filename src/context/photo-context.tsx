@@ -1,7 +1,13 @@
 import React, {createContext, useState, useContext, FC} from 'react';
 
+export type Location = {
+  latitude: number;
+  longitude: number;
+};
+
 export type Photo = {
   uri: string;
+  location?: Location;
 };
 
 type PhotoContextType = {

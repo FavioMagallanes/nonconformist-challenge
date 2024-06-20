@@ -1,45 +1,14 @@
-import {useContext, useRef, useEffect, useState} from 'react';
+import {useContext, useRef} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {Camera} from 'react-native-camera-kit';
 import {PhotoContext} from '../../context/photo-context';
-import Geolocation, {
-  GeolocationResponse,
-} from '@react-native-community/geolocation';
+import {LocationContext} from '../../context/location-context';
 
 export const useCamera = () => {
   const navigation = useNavigation();
   const {addPhoto} = useContext(PhotoContext) || {};
+  const {location, error} = useContext(LocationContext);
   const cameraRef = useRef<Camera>(null);
-  const [location, setLocation] = useState<{
-    latitude: number;
-    longitude: number;
-  } | null>(null);
-
-  useEffect(() => {
-    const watchLocation = async () => {
-      try {
-        const position = await getCurrentPosition();
-        setLocation({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        });
-      } catch (error) {
-        console.error('Error obteniendo la ubicación:', error);
-      }
-    };
-
-    watchLocation();
-  }, []);
-
-  const getCurrentPosition = () => {
-    return new Promise<GeolocationResponse>((resolve, reject) => {
-      Geolocation.getCurrentPosition(
-        position => resolve(position),
-        error => reject(error),
-        {enableHighAccuracy: true, timeout: 30000, maximumAge: 1000},
-      );
-    });
-  };
 
   const handleCapture = async () => {
     if (!location) {
@@ -63,5 +32,5 @@ export const useCamera = () => {
     }
   };
 
-  return {cameraRef, handleCapture};
+  return {cameraRef, handleCapture, error};
 };
