@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {
   Image,
   Text,
@@ -6,13 +6,13 @@ import {
   useWindowDimensions,
   ScrollView,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
 import {RouteProp, useRoute, useNavigation} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import {styles} from './photo-modal.styles';
-import Share from 'react-native-share';
-import {Photo} from '../../context/photo-context';
 import {RootStackParamList} from '../../navigation/types';
+import {fetchLocationText, sharePhoto} from '../utils';
+import {styles} from './photo-modal.styles';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 type PhotoScreenRouteProp = RouteProp<RootStackParamList, 'PhotoScreen'>;
 
@@ -22,33 +22,19 @@ export const PhotoModal: FC = () => {
   const navigation = useNavigation();
   const {photo} = route.params;
 
-  const locationText = photo.location
-    ? `Latitude: ${photo.location.latitude}, Longitude: ${photo.location.longitude}`
-    : 'Unknown Location';
+  const [locationText, setLocationText] = useState('Unknown Location');
+  const [loading, setLoading] = useState(true);
 
-  const handleSharePhoto = async (photo: Photo) => {
-    try {
-      const shareOptions = {
-        title: 'Compartir imagen',
-        message: 'Echa un vistazo a esta imagen',
-        url: photo.uri,
-      };
-      const shareResponse = await Share.open(shareOptions);
+  useEffect(() => {
+    const updateLocationText = async () => {
+      setLoading(true);
+      const text = await fetchLocationText(photo.location);
+      setLocationText(text);
+      setLoading(false);
+    };
 
-      if (shareResponse.dismissedAction) {
-        return;
-      }
-    } catch (error: unknown) {
-      if (
-        typeof error === 'object' &&
-        error !== null &&
-        'message' in error &&
-        error.message !== 'User did not share'
-      ) {
-        console.error('Error al compartir la imagen:', error);
-      }
-    }
-  };
+    updateLocationText();
+  }, [photo.location]);
 
   return (
     <ScrollView>
@@ -61,22 +47,24 @@ export const PhotoModal: FC = () => {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.shareButton}
-            onPress={() => handleSharePhoto(photo)}>
+            onPress={() => sharePhoto(photo)}>
             <Icon name="logo-whatsapp" size={40} color="#fff" />
           </TouchableOpacity>
 
           <View style={styles.imageBorder}>
-            <Image
-              source={{
-                uri: photo.uri,
-              }}
-              style={styles.posterImage}
-            />
+            <Image source={{uri: photo.uri}} style={styles.posterImage} />
           </View>
         </View>
         <View style={styles.contentContainer}>
-          <Text style={styles.title}>Location:</Text>
-          <Text style={styles.description}>{locationText}</Text>
+          <Text style={styles.title}>Picture Location:</Text>
+          {loading ? (
+            <View style={styles.loadingContainer}>
+              <ActivityIndicator size="small" color="#F40084" />
+              <Text style={styles.loadingText}>Getting location...</Text>
+            </View>
+          ) : (
+            <Text style={styles.description}>{locationText}</Text>
+          )}
         </View>
       </View>
     </ScrollView>

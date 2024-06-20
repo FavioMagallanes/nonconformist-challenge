@@ -6,12 +6,11 @@ import {
   TouchableOpacity,
   Text,
   View,
-  Alert,
 } from 'react-native';
 import {Photo, usePhotoContext} from '../../context/photo-context';
 import {useNavigation, NavigationProp} from '@react-navigation/native';
 import {RootStackParamList} from '../../navigation/types';
-import {showDeletePhotoAlert} from '../utils/alert-utils';
+import {showDeletePhotoAlert} from '../utils';
 
 type PhotoListProps = {
   photos: Photo[];

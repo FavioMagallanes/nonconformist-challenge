@@ -4,7 +4,7 @@ import {PhotoList} from '../photos/components/photo-list';
 import {TakePhotoButton} from '../photos/components/take-photo-button';
 import {globalStyles} from '../styles/global-styles';
 import {useNavigation} from '@react-navigation/native';
-import {Photo, usePhotoContext} from '../context/photo-context';
+import {usePhotoContext} from '../context/photo-context';
 
 export const HomeScreen: FC = () => {
   const navigation = useNavigation();
@@ -28,5 +28,3 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
 });
-
-export default HomeScreen;

@@ -76,4 +76,13 @@ export const styles = StyleSheet.create({
     shadowRadius: 7,
     elevation: 9,
   },
+  loadingContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  loadingText: {
+    marginLeft: 10,
+    fontSize: 16,
+    color: '#999',
+  },
 });
