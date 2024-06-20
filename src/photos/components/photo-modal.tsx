@@ -57,7 +57,7 @@ export const PhotoModal: FC = () => {
           <TouchableOpacity
             style={styles.goBackButton}
             onPress={() => navigation.goBack()}>
-            <Icon name="arrow-back-outline" size={30} color="#9592e2" />
+            <Icon name="arrow-back-outline" size={30} color="#F40084" />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.shareButton}

@@ -11,7 +11,6 @@ import {
 import {Photo} from '../../context/photo-context';
 import {useNavigation, NavigationProp} from '@react-navigation/native';
 import {RootStackParamList} from '../../navigation/types';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 type PhotoListProps = {
   photos: Photo[];
@@ -49,7 +48,9 @@ export const PhotoList: FC<PhotoListProps> = ({photos, onDeletePhoto}) => {
     <ScrollView contentContainerStyle={styles.gridContainer}>
       {photos.length === 0 ? (
         <View style={styles.noPhotosContainer}>
-          <Text style={styles.noPhotosText}>No hay fotos disponibles</Text>
+          <Text style={styles.noPhotosText}>
+            Not photos found. Take a picture!
+          </Text>
         </View>
       ) : (
         photos.map((photo, index) => (
@@ -71,6 +72,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     padding: 10,
+    marginTop: 60,
   },
   gridItem: {
     width: 150,
@@ -86,7 +88,8 @@ const styles = StyleSheet.create({
   },
   noPhotosText: {
     fontSize: 18,
-    color: '#9592e2',
+    borderRadius: 50,
+    color: '#F40084',
     textAlign: 'center',
   },
 });

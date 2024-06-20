@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   takePictureButton: {
     alignSelf: 'center',
     borderRadius: 50,
-    backgroundColor: '#9592e2',
+    backgroundColor: '#F40084',
     marginBottom: 20,
     paddingVertical: 20,
     paddingHorizontal: 20,

@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   title: {
-    color: '#9592e2',
+    color: '#F40084',
     fontSize: 20,
     fontWeight: 'bold',
     marginTop: 10,
@@ -64,7 +64,7 @@ export const styles = StyleSheet.create({
     bottom: 20,
     right: 20,
     zIndex: 1,
-    backgroundColor: '#25d366',
+    backgroundColor: '#F40084',
     borderRadius: 20,
     padding: 6,
     shadowColor: '#000',
