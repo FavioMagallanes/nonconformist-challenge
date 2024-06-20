@@ -4,19 +4,23 @@ import {PhotoList} from '../photos/components/photo-list';
 import {TakePhotoButton} from '../photos/components/take-photo-button';
 import {globalStyles} from '../styles/global-styles';
 import {useNavigation} from '@react-navigation/native';
-import {usePhotoContext} from '../context/photo-context';
+import {Photo, usePhotoContext} from '../context/photo-context';
 
 export const HomeScreen: FC = () => {
   const navigation = useNavigation();
-  const {photos} = usePhotoContext();
+  const {photos, removePhoto} = usePhotoContext();
 
   const handleTakePhoto = () => {
     navigation.navigate('TakePhoto' as never);
   };
 
+  const handleDeletePhoto = (photo: Photo) => {
+    removePhoto(photo);
+  };
+
   return (
     <View style={globalStyles.container}>
-      <PhotoList photos={photos} />
+      <PhotoList photos={photos} onDeletePhoto={handleDeletePhoto} />
       <View style={styles.buttonContainer}>
         <TakePhotoButton onPress={handleTakePhoto} />
       </View>

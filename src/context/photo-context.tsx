@@ -13,6 +13,7 @@ export type Photo = {
 type PhotoContextType = {
   photos: Photo[];
   addPhoto: (photo: Photo) => void;
+  removePhoto: (photo: Photo) => void;
 };
 
 type PhotoProviderProps = {
@@ -30,8 +31,14 @@ export const PhotoProvider: FC<PhotoProviderProps> = ({children}) => {
     setPhotos(prevPhotos => [...prevPhotos, photo]);
   };
 
+  const removePhoto = (photoToRemove: Photo) => {
+    setPhotos(prevPhotos =>
+      prevPhotos.filter(photo => photo.uri !== photoToRemove.uri),
+    );
+  };
+
   return (
-    <PhotoContext.Provider value={{photos, addPhoto}}>
+    <PhotoContext.Provider value={{photos, addPhoto, removePhoto}}>
       {children}
     </PhotoContext.Provider>
   );

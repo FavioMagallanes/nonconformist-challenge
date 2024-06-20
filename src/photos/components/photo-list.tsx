@@ -6,20 +6,43 @@ import {
   TouchableOpacity,
   Text,
   View,
+  Alert,
 } from 'react-native';
 import {Photo} from '../../context/photo-context';
 import {useNavigation, NavigationProp} from '@react-navigation/native';
 import {RootStackParamList} from '../../navigation/types';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 type PhotoListProps = {
   photos: Photo[];
+  onDeletePhoto: (photo: Photo) => void;
 };
 
-export const PhotoList: FC<PhotoListProps> = ({photos}) => {
+export const PhotoList: FC<PhotoListProps> = ({photos, onDeletePhoto}) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const handlePress = (photo: Photo) => {
     navigation.navigate('PhotoScreen', {photo});
+  };
+
+  const handleDeletePhoto = (photo: Photo) => {
+    onDeletePhoto(photo);
+  };
+
+  const handleLongPress = (photo: Photo) => {
+    Alert.alert(
+      'Eliminar foto',
+      '¿Estás seguro de que deseas eliminar esta foto?',
+      [
+        {
+          text: 'Cancelar',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'Eliminar', onPress: () => handleDeletePhoto(photo)},
+      ],
+      {cancelable: false},
+    );
   };
 
   return (
@@ -30,7 +53,10 @@ export const PhotoList: FC<PhotoListProps> = ({photos}) => {
         </View>
       ) : (
         photos.map((photo, index) => (
-          <TouchableOpacity key={index} onPress={() => handlePress(photo)}>
+          <TouchableOpacity
+            key={index}
+            onPress={() => handlePress(photo)}
+            onLongPress={() => handleLongPress(photo)}>
             <Image source={{uri: photo.uri}} style={styles.gridItem} />
           </TouchableOpacity>
         ))
@@ -44,12 +70,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    marginTop: 20,
+    padding: 10,
   },
   gridItem: {
-    width: 90,
-    height: 90,
+    width: 150,
+    height: 150,
     margin: 5,
+    borderRadius: 10,
   },
   noPhotosContainer: {
     flex: 1,
@@ -60,7 +87,6 @@ const styles = StyleSheet.create({
   noPhotosText: {
     fontSize: 18,
     color: '#9592e2',
+    textAlign: 'center',
   },
 });
-
-export default PhotoList;

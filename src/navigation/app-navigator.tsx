@@ -26,7 +26,7 @@ const AppNavigator = () => {
       <Stack.Screen
         name="TakePhoto"
         component={TakePhotoScreen}
-        options={{title: 'Take Photo'}}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );
