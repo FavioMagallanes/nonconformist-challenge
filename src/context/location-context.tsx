@@ -1,3 +1,11 @@
+/**
+ * El código define un componente LocationProvider en TypeScript React que utiliza la API de Geolocalización
+ * para proporcionar la ubicación actual del usuario a sus componentes hijos.
+ * @property children: La propiedad `children` en el tipo `LocationProviderProps` es un patrón común en
+ * React para pasar componentes como hijos a otro componente. En este caso, el componente `LocationProvider`
+ * renderizará sus componentes hijos que se le pasen. Esto te permite anidar
+ * componentes dentro de `LocationProvider`.
+ */
 import React, {createContext, useState, useEffect, FC} from 'react';
 import Geolocation, {
   GeolocationResponse,

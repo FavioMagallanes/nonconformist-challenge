@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = 'ac137126f6584b07bc0a57a28f3b1b9d';
+const API_KEY = 'ac137126f6584b07bc0a57a28f3b1b9d'; //Nota: No se movió la clave de la API a una variable de entorno para que se pueda probar la aplicación sin necesidad de configurar una API Key propia. Sin embargo, en un entorno de producción, es importante mantener las claves de la API seguras y fuera del código fuente.
 
 export const getCityName = async (
   latitude: number,

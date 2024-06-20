@@ -1,3 +1,21 @@
+/**
+ * El código define un PhotoContext y PhotoProvider en React para gestionar una lista de fotos
+ * con datos de ubicación, almacenándolas en AsyncStorage.
+ * @property {Photo[]} photos - La propiedad `photos` en el código representa un array de objetos `Photo`.
+ * Cada objeto `Photo` tiene una propiedad `uri` de tipo string y una propiedad opcional `location`
+ * de tipo `Location`, que consiste en propiedades `latitude` y `longitude` de tipo number.
+ * @property addPhoto - La función `addPhoto` en el código proporcionado es una función que toma un objeto `Photo`
+ * como parámetro y lo añade a la lista de fotos almacenadas en el estado del componente. Utiliza la función
+ * `setPhotos` proporcionada por el gancho `useState` para actualizar el estado añadiendo la foto.
+ * @property removePhoto - La función `removePhoto` en el código proporcionado es responsable de eliminar
+ * una foto específica de la lista de fotos almacenadas en el contexto. Toma un objeto `Photo` como
+ * parámetro y filtra la foto con una propiedad `uri` coincidente de la lista actual de fotos.
+ * @property removeAllPhotos - La función `removeAllPhotos` en el fragmento de código es una función definida
+ * dentro del componente `PhotoProvider`. Es responsable de eliminar todas las fotos del estado `photos`
+ * y también eliminar las fotos almacenadas de AsyncStorage utilizando el método `AsyncStorage.removeItem`
+ * con la clave `PHOTO_STORAGE_KEY`.
+ */
+
 import React, {createContext, useState, useContext, FC, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
