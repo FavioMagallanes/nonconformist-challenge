@@ -1,79 +1,67 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 📸 Nonconformist frontend challenge
 
-# Getting Started
+## 🌟 Descripción
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+Aplicación móvil que permite a los usuarios capturar fotos junto con su ubicación exacta.
 
-## Step 1: Start the Metro Server
+## 🚀 Características
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- 📷 Captura fotos directamente desde la app
+- 📍 Guarda automáticamente la ubicación de cada foto
+- 🗺️ Visualiza tus fotos
+- 🔍 Vista detallada de cada foto con su ubicación
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## 🛠️ Tecnologías Utilizadas
 
-```bash
-# using npm
-npm start
+- React Native 0.74.2
+- React Navigation para la navegación entre pantallas
+- AsyncStorage para almacenamiento local
+- Geolocation para capturar la ubicación
+- React Native Camera Kit para la funcionalidad de la cámara
+- React Native SVG para gráficos vectoriales
+- Axios
 
-# OR using Yarn
-yarn start
-```
+## 📱 Pantallas
 
-## Step 2: Start your Application
+1. **Splash Screen**: Bienvenida animada al iniciar la app
+2. **Pantalla Principal**: Mosaico de fotos tomadas
+3. **Pantalla de Foto**: Vista detallada de la foto con ubicación
+4. **Pantalla de Cámara**: Para capturar nuevas fotos
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+## 🏁 Cómo Empezar
 
-### For Android
+1. Cloná el repositorio:
 
-```bash
-# using npm
-npm run android
+   ```
+   https://github.com/FavioMagallanes/nonconformist-challenge.git
+   ```
 
-# OR using Yarn
-yarn android
-```
+2. Moverse a la carpeta del proyecto:
 
-### For iOS
+   ```
+   cd nonconformist-challenge
+   ```
 
-```bash
-# using npm
-npm run ios
+3. Instalar las dependencias:
 
-# OR using Yarn
-yarn ios
-```
+   ```
+   npm install
+   ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+4. Iniciar el server:
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+   ```
+   npm start
+   ```
 
-## Step 3: Modifying your App
+5. Correr la aplicación en Android:
 
-Now that you have successfully run the app, let's modify it.
+   ```
+   npm run android
+   ```
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+## 📞 Contacto
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+LinkedIn: [Favio Magallanes](https://www.linkedin.com/in/favio-magallanes/)
 
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+---
