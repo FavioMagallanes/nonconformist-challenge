@@ -15,6 +15,7 @@ type PhotoContextType = {
   photos: Photo[];
   addPhoto: (photo: Photo) => void;
   removePhoto: (photo: Photo) => void;
+  removeAllPhotos: () => void;
 };
 
 type PhotoProviderProps = {
@@ -67,8 +68,18 @@ export const PhotoProvider: FC<PhotoProviderProps> = ({children}) => {
     );
   };
 
+  const removeAllPhotos = async () => {
+    setPhotos([]);
+    try {
+      await AsyncStorage.removeItem(PHOTO_STORAGE_KEY);
+    } catch (error) {
+      console.error('Error removing all photos from AsyncStorage', error);
+    }
+  };
+
   return (
-    <PhotoContext.Provider value={{photos, addPhoto, removePhoto}}>
+    <PhotoContext.Provider
+      value={{photos, addPhoto, removePhoto, removeAllPhotos}}>
       {children}
     </PhotoContext.Provider>
   );

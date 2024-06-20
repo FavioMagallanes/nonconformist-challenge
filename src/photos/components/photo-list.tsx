@@ -11,6 +11,7 @@ import {Photo, usePhotoContext} from '../../context/photo-context';
 import {useNavigation, NavigationProp} from '@react-navigation/native';
 import {RootStackParamList} from '../../navigation/types';
 import {showDeletePhotoAlert} from '../utils';
+import {DeleteAllPhotosButton} from './delete-all-photos-button';
 
 type PhotoListProps = {
   photos: Photo[];
@@ -27,34 +28,48 @@ export const PhotoList: FC<PhotoListProps> = ({photos}) => {
     showDeletePhotoAlert(photo, removePhoto);
 
   return (
-    <ScrollView contentContainerStyle={styles.gridContainer}>
-      {photos.length === 0 ? (
-        <View style={styles.noPhotosContainer}>
-          <Text style={styles.noPhotosText}>
-            Not photos found. Take a picture!
-          </Text>
+    <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      {photos.length > 0 && (
+        <View style={styles.buttonContainer}>
+          <DeleteAllPhotosButton />
         </View>
-      ) : (
-        photos.map((photo, index) => (
-          <TouchableOpacity
-            key={index}
-            onPress={() => handlePress(photo)}
-            onLongPress={() => handleLongPress(photo)}>
-            <Image source={{uri: photo.uri}} style={styles.gridItem} />
-          </TouchableOpacity>
-        ))
       )}
+      <View style={styles.gridContainer}>
+        {photos.length === 0 ? (
+          <View style={styles.noPhotosContainer}>
+            <Text style={styles.noPhotosText}>
+              No photos found. Take a picture!
+            </Text>
+          </View>
+        ) : (
+          photos.map((photo, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() => handlePress(photo)}
+              onLongPress={() => handleLongPress(photo)}>
+              <Image source={{uri: photo.uri}} style={styles.gridItem} />
+            </TouchableOpacity>
+          ))
+        )}
+      </View>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  scrollViewContent: {
+    flexGrow: 1,
+  },
+  buttonContainer: {
+    padding: 10,
+    alignItems: 'center',
+    marginTop: 60,
+  },
   gridContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
     padding: 10,
-    marginTop: 60,
   },
   gridItem: {
     width: 150,
@@ -66,7 +81,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 200,
+    height: 700,
   },
   noPhotosText: {
     fontSize: 18,
