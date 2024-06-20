@@ -8,19 +8,13 @@ import {Photo, usePhotoContext} from '../context/photo-context';
 
 export const HomeScreen: FC = () => {
   const navigation = useNavigation();
-  const {photos, removePhoto} = usePhotoContext();
+  const {photos} = usePhotoContext();
 
-  const handleTakePhoto = () => {
-    navigation.navigate('TakePhoto' as never);
-  };
-
-  const handleDeletePhoto = (photo: Photo) => {
-    removePhoto(photo);
-  };
+  const handleTakePhoto = () => navigation.navigate('TakePhoto' as never);
 
   return (
     <View style={globalStyles.container}>
-      <PhotoList photos={photos} onDeletePhoto={handleDeletePhoto} />
+      <PhotoList photos={photos} />
       <View style={styles.buttonContainer}>
         <TakePhotoButton onPress={handleTakePhoto} />
       </View>

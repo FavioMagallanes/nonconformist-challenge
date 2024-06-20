@@ -8,41 +8,24 @@ import {
   View,
   Alert,
 } from 'react-native';
-import {Photo} from '../../context/photo-context';
+import {Photo, usePhotoContext} from '../../context/photo-context';
 import {useNavigation, NavigationProp} from '@react-navigation/native';
 import {RootStackParamList} from '../../navigation/types';
+import {showDeletePhotoAlert} from '../utils/alert-utils';
 
 type PhotoListProps = {
   photos: Photo[];
-  onDeletePhoto: (photo: Photo) => void;
 };
 
-export const PhotoList: FC<PhotoListProps> = ({photos, onDeletePhoto}) => {
+export const PhotoList: FC<PhotoListProps> = ({photos}) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const {removePhoto} = usePhotoContext();
 
-  const handlePress = (photo: Photo) => {
+  const handlePress = (photo: Photo) =>
     navigation.navigate('PhotoScreen', {photo});
-  };
 
-  const handleDeletePhoto = (photo: Photo) => {
-    onDeletePhoto(photo);
-  };
-
-  const handleLongPress = (photo: Photo) => {
-    Alert.alert(
-      'Eliminar foto',
-      '¿Estás seguro de que deseas eliminar esta foto?',
-      [
-        {
-          text: 'Cancelar',
-          onPress: () => console.log('Cancel Pressed'),
-          style: 'cancel',
-        },
-        {text: 'Eliminar', onPress: () => handleDeletePhoto(photo)},
-      ],
-      {cancelable: false},
-    );
-  };
+  const handleLongPress = (photo: Photo) =>
+    showDeletePhotoAlert(photo, removePhoto);
 
   return (
     <ScrollView contentContainerStyle={styles.gridContainer}>
