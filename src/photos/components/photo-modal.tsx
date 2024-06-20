@@ -48,7 +48,7 @@ export const PhotoModal: FC = () => {
           <TouchableOpacity
             style={styles.shareButton}
             onPress={() => sharePhoto(photo)}>
-            <Icon name="logo-whatsapp" size={40} color="#fff" />
+            <Icon name="share-social-outline" size={40} color="#fff" />
           </TouchableOpacity>
 
           <View style={styles.imageBorder}>

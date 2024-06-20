@@ -5,6 +5,7 @@ import {HomeScreen} from '../screens/home-screen';
 import {TakePhotoScreen} from '../screens/take-photo-screen';
 import {PhotoModal} from '../photos/components/photo-modal';
 import {RootStackParamList} from './types';
+import SplashScreen from '../screens/splash-screen';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -30,6 +31,11 @@ const AppNavigator = () => {
         },
         headerRight: () => <HeaderIcon />,
       }}>
+      <Stack.Screen
+        name="Splash"
+        component={SplashScreen}
+        options={{headerShown: false}}
+      />
       <Stack.Screen name="Home" component={HomeScreen} options={{title: ''}} />
       <Stack.Screen
         name="PhotoScreen"
